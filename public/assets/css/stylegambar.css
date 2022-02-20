@@ -1,0 +1,41 @@
+.card-body a:hover .thumb {
+    opacity: 7;
+}
+
+.overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 5);
+    display: none;
+    overflow: hidden;
+    text-align: center;
+}
+.overlay .close {
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    position: absolute;
+}
+
+.overlay:target {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: block;
+    right: 0;
+    animation: fade .7s forwards;
+}
+
+.overlay .jumbo {
+    width: 60%;
+    margin-top: 70px;
+}
+
+@keyframes fade{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
