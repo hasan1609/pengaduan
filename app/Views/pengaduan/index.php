@@ -43,7 +43,9 @@
                                 </td>
                                 <td>
                                     <a href="/pengaduan/view/<?= $value->id_pengaduan ?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
-                                    <a href="/pengaduan/print/<?= $value->id_pengaduan ?>" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</a>
+                                    <?php if (session()->id_level == 2) : ?>
+                                        <button onclick="window.open('<?= base_url() ?>/pengaduan/print/<?= $value->id_pengaduan ?>', 'blank')" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Cetak</button>
+                                    <?php endif ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>

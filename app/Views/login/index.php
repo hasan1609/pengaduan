@@ -47,7 +47,7 @@
                     <?php endif; ?>
                     <form method="POST" action="/login/prosesLogin">
                         <?= csrf_field() ?>
-                        <h1>Login Form</h1>
+                        <h1>Login</h1>
                         <div>
                             <input type="text" name="username" id="username" class="form-control" placeholder="Username" />
                         </div>

@@ -24,9 +24,16 @@
                             <h4>Masuk?</h4>
                             <h6 class="font-weight-light">Silahkan login terlebih dahulu !</h6>
                             <?php if (session()->getFlashdata('pesan')) : ?>
-                                <div class="alert alert-danger alert-dismissable show fade text-black">
+                                <div class="alert alert-success alert-dismissable show fade">
                                     <div class="alert-body">
                                         <?= session()->getFlashdata('pesan') ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (session()->getFlashdata('err')) : ?>
+                                <div class="alert alert-danger alert-dismissable show fade text-light">
+                                    <div class="alert-body">
+                                        <?= session()->getFlashdata('err') ?>
                                     </div>
                                 </div>
                             <?php endif; ?>

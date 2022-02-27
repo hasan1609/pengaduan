@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\MasyarakatModel;
 use App\Models\PengaduanModel;
 use App\Models\TanggapanModel;
+use Dompdf\Dompdf;
 use Mpdf\Mpdf;
 
 class Pengaduan extends BaseController
@@ -80,15 +81,30 @@ class Pengaduan extends BaseController
     // PRINT PENGADUAN BERDASARKAN ID
     public function print($id)
     {
-        $mpdf = new Mpdf();
+        // $mpdf = new Mpdf();
 
+        $dompdf = new Dompdf();
         $data = [
             'pengaduan' =>  $this->pengaduanmodel->getById($id),
-            'tanggapan' =>  $this->pengaduanmodel->getTanggapanById($id)
         ];
-
         $view = view('pengaduan/print', $data);
-        $mpdf->WriteHTML($view);
-        $mpdf->Output();
+        // $mpdf->WriteHTML($view);
+        // $mpdf->Output();
+        // reference the Dompdf namespace
+
+        // instantiate and use the dompdf class
+        $dompdf->loadHtml($view);
+
+        // // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        $dompdf->set_option('isRemoteEnabled', FALSE);
+        // // Render the HTML as PDF
+        $dompdf->render();
+
+        // // Output the generated PDF to Browser
+        $dompdf->stream('pengaduan.pdf', array(
+            "Attachment" => false
+        ));
     }
 }
