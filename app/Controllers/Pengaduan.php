@@ -81,23 +81,22 @@ class Pengaduan extends BaseController
     // PRINT PENGADUAN BERDASARKAN ID
     public function print($id)
     {
-        // $mpdf = new Mpdf();
-
+        //INISIALISASI LIBRARY 
         $dompdf = new Dompdf();
+//DATA YANG AKAN DITAMPILKAN
         $data = [
             'pengaduan' =>  $this->pengaduanmodel->getById($id),
         ];
+//TENTUKAN TAMPILAN YANG AKAN DICETAK PDF
         $view = view('pengaduan/print', $data);
-        // $mpdf->WriteHTML($view);
-        // $mpdf->Output();
-        // reference the Dompdf namespace
+//PANGGIL TAMPILAN
 
         // instantiate and use the dompdf class
         $dompdf->loadHtml($view);
-
+//TENTUKAN UKURAN KERTAS YANG AKAN DIGUNAKAN
         // // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');
-
+//AGAR GAMBAR BISA TERBACA
         $dompdf->set_option('isRemoteEnabled', FALSE);
         // // Render the HTML as PDF
         $dompdf->render();
